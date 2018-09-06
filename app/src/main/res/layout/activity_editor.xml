@@ -59,7 +59,7 @@
             <EditText
                 android:id="@+id/edit_product_price"
                 android:hint="@string/hint_price"
-                android:inputType="textCapWords"
+                android:inputType="numberDecimal"
                 style="@style/EditorFieldStyle" />
         </LinearLayout>
     </LinearLayout>
@@ -113,6 +113,7 @@
             <EditText
                 android:id="@+id/edit_supplier_phone"
                 android:hint="@string/hint_supplier_phone"
+                android:inputType="number"
                 style="@style/EditorFieldStyle"/>
 
         </LinearLayout>

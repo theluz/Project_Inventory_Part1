@@ -29,7 +29,7 @@ public class CatalogActivity extends AppCompatActivity {
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(CatalogActivity.this,EditorActivity.class);
+                Intent intent = new Intent(CatalogActivity.this, EditorActivity.class);
                 startActivity(intent);
             }
         });
@@ -37,14 +37,14 @@ public class CatalogActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onStart(){
+    protected void onStart() {
         super.onStart();
         displayDatabaseInfo();
     }
 
-    private void displayDatabaseInfo(){
+    private void displayDatabaseInfo() {
         SQLiteDatabase db = mDbHelper.getReadableDatabase();
-        String [] projection = {
+        String[] projection = {
                 InventoryEntry._ID,
                 InventoryEntry.COLUMN_PRODUCT_NAME,
                 InventoryEntry.COLUMN_PRODUCT_TYPE,
@@ -55,7 +55,7 @@ public class CatalogActivity extends AppCompatActivity {
 
         Cursor cursor = db.query(
                 InventoryEntry.TABLE_NAME,
-                projection,null,null,null,null,null);
+                projection, null, null, null, null, null);
 
         TextView displayInventory = (TextView) findViewById(R.id.display_inventory);
 
@@ -94,9 +94,9 @@ public class CatalogActivity extends AppCompatActivity {
                         currentSupplier + " - " +
                         currentPhone));
             }
-        } catch (SQLException e){
-            Log.d("SQL EXCEPTION","TRY CATCH BLOCK" +e.toString());
-        } finally{
+        } catch (SQLException e) {
+            Log.d("SQL EXCEPTION", "TRY CATCH BLOCK" + e.toString());
+        } finally {
             cursor.close();
         }
     }
