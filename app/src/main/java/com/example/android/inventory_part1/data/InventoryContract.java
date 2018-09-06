@@ -2,11 +2,12 @@ package com.example.android.inventory_part1.data;
 
 import android.provider.BaseColumns;
 
-public final class InventoryContract  {
+public final class InventoryContract {
 
-    private InventoryContract(){}
+    private InventoryContract() {
+    }
 
-    public static final class InventoryEntry implements BaseColumns{
+    public static final class InventoryEntry implements BaseColumns {
 
         public final static String TABLE_NAME = "inventory";
         public final static String _ID = BaseColumns._ID;

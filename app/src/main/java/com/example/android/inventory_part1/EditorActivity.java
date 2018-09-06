@@ -27,30 +27,29 @@ import org.w3c.dom.Text;
 
 public class EditorActivity extends AppCompatActivity {
     private EditText mNameEditText;
-    private Spinner  mTypeSpinner;
+    private Spinner mTypeSpinner;
     private EditText mPriceEditText;
     private EditText mQuantityEditText;
     private EditText mSupplierEditText;
     private EditText mSupplierPhoneEditText;
 
     private int mType;
-    //= InventoryEntry.TYPE_OTHER;
 
     @Override
-    protected void onCreate (Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editor);
 
-       mNameEditText = findViewById(R.id.edit_product_title);
-       mTypeSpinner = findViewById(R.id.spinner_type);
-       mPriceEditText = findViewById(R.id.edit_product_price);
-       mQuantityEditText = findViewById(R.id.edit_quantity);
-       mSupplierEditText = findViewById(R.id.edit_supplier);
-       mSupplierPhoneEditText = findViewById(R.id.edit_supplier_phone);
-       setupSpinner();
+        mNameEditText = findViewById(R.id.edit_product_title);
+        mTypeSpinner = findViewById(R.id.spinner_type);
+        mPriceEditText = findViewById(R.id.edit_product_price);
+        mQuantityEditText = findViewById(R.id.edit_quantity);
+        mSupplierEditText = findViewById(R.id.edit_supplier);
+        mSupplierPhoneEditText = findViewById(R.id.edit_supplier_phone);
+        setupSpinner();
     }
 
-    private void setupSpinner(){
+    private void setupSpinner() {
         ArrayAdapter typeSpinnerAdapter = ArrayAdapter.createFromResource(this,
                 R.array.array_type_options, android.R.layout.simple_spinner_item);
 
@@ -61,10 +60,10 @@ public class EditorActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selection = (String) parent.getItemAtPosition(position);
-                if (!TextUtils.isEmpty(selection)){
-                    if (selection.equals(R.string.type_book)){
+                if (!TextUtils.isEmpty(selection)) {
+                    if (selection.equals(R.string.type_book)) {
                         mType = InventoryEntry.TYPE_BOOK;
-                    } else if(selection.equals(R.string.type_magazine)){
+                    } else if (selection.equals(R.string.type_magazine)) {
                         mType = InventoryEntry.TYPE_MAGAZINE;
                     } else {
                         mType = InventoryEntry.TYPE_OTHER;
@@ -79,7 +78,7 @@ public class EditorActivity extends AppCompatActivity {
         });
     }
 
-    private void insertInventory(){
+    private void insertInventory() {
         String nameString = mNameEditText.getText().toString().trim();
         String priceString = mPriceEditText.getText().toString().trim();
         String quantityString = mQuantityEditText.getText().toString().trim();
@@ -101,23 +100,23 @@ public class EditorActivity extends AppCompatActivity {
         values.put(InventoryEntry.COLUMN_SUPPLIER_NAME, supplierString);
         values.put(InventoryEntry.COLUMN_SUPPLIER_PHONE, phone);
 
-        long newRowId = db.insert(InventoryEntry.TABLE_NAME, null,values);
+        long newRowId = db.insert(InventoryEntry.TABLE_NAME, null, values);
         if (newRowId == -1) {
-            Toast.makeText(this,"Error adding item", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Error adding item", Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(this,"Item saved on Row: " + newRowId, Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Item saved on Row: " + newRowId, Toast.LENGTH_LONG).show();
         }
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_editor,menu);
+        getMenuInflater().inflate(R.menu.menu_editor, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.action_save:
                 insertInventory();
                 finish();
